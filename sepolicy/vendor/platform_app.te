@@ -1,6 +1,8 @@
 not_recovery(`
 hal_client_domain(platform_app, vendor_hal_camerapostproc_xiaomi)
 hal_client_domain(platform_app_36, vendor_hal_camerapostproc_xiaomi)
+hal_client_domain(platform_app, vendor_hal_qspmhal)
+hal_client_domain(platform_app_36, vendor_hal_qspmhal)
 
 binder_use(platform_app)
 binder_use(platform_app_36)
@@ -11,8 +13,8 @@ binder_call(platform_app_36, vendor_hal_camerapostproc_xiaomi)
 allow platform_app vendor_hal_camerapostproc_xiaomi_hwservice:hwservice_manager find;
 allow platform_app_36 vendor_hal_camerapostproc_xiaomi_hwservice:hwservice_manager find;
 
-allow platform_app adsprpcd_file:dir { open read search };
-allow platform_app_36 adsprpcd_file:dir { open read search };
+allow platform_app adsprpcd_file:dir { getattr open read search };
+allow platform_app_36 adsprpcd_file:dir { getattr open read search };
 allow platform_app vendor_qdsp_device:chr_file { ioctl read };
 allow platform_app_36 vendor_qdsp_device:chr_file { ioctl read };
 # sm8750 grants this only to platform_app; MiuiCamera (targetSdk 34) runs as platform_app_36
