@@ -36,3 +36,9 @@ get_prop(platform_app_36, vendor_display_prop)
 get_prop(platform_app, vendor_panel_info_prop)
 get_prop(platform_app_36, vendor_panel_info_prop)
 ')
+
+# MiuiCamera reads ro.vendor.audio.* for its recording features
+get_prop(platform_app, vendor_audio_prop)
+get_prop(platform_app_36, vendor_audio_prop)
+# It also stats /vendor/lib64/libui.so; apps may not read vendor_file and nothing loads it
+dontaudit { platform_app platform_app_36 } vendor_file:file read;
